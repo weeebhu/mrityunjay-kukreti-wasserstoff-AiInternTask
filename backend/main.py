@@ -41,3 +41,7 @@ async def upload_doc(files: List[UploadFile] = File(...)):  # note plural 'files
         })
         
     return {"filenames": results}
+
+@app.get("/")
+def root():
+    return {"message": "Backend is live 🚀"}
