@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+aiofiles
+python-multipart
+qdrant-client
+sentence-transformers
+pdfplumber
+pytesseract
+PyMuPDF
+Pillow
+python-dotenv
+openai>=1.0.0

@@ -1,0 +1,31 @@
+/* App.css */
+
+.app-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Optional: Limit widths if needed */
+.uploader-box {
+  flex: 1;
+  max-width: 350px;
+}
+
+.left-panel {
+  flex: 1;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.chat-box {
+  flex: 2;
+}
