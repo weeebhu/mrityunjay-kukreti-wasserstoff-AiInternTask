@@ -18,7 +18,7 @@ function FileUpload() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/upload/", formData);
+      const response = await axios.post("https://mrityunjay-kukreti-wasserstoff.onrender.com/upload/", formData);
       setMessage(`Uploaded ${response.data.filenames.length} files successfully.`);
     } catch (error) {
       console.error(error);

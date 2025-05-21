@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     // Fetch detected themes from backend
-    fetch("http://localhost:8000/themes")
+    fetch("https://mrityunjay-kukreti-wasserstoff.onrender.com/themes")
       .then((res) => res.json())
       .then((data) => setDetectedThemes(data.themes || []))
       .catch((err) => console.error("Error fetching themes:", err));
