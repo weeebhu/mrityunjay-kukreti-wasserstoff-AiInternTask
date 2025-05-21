@@ -14,13 +14,18 @@ from routers.themes import router as themes_router
 
 app = FastAPI()
 
+origins = [
+    "https://mrityunjay-kukreti-wasserstoff-ai-intern-task-m79ci4ss6.vercel.app/"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://mrityunjay-kukreti-wasserstoff-ai-intern-task.vercel.app/"],  # or ["*"] for all
+    allow_origins=origins,  # or ["*"] for all (less secure)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 app.include_router(rag_router)
 app.include_router(themes_router)
