@@ -15,7 +15,7 @@ from routers.themes import router as themes_router
 app = FastAPI()
 
 origins = [
-    "https://mrityunjay-kukreti-wasserstoff-ai-intern-task-m79ci4ss6.vercel.app/"
+    "https://mrityunjay-kukreti-wasserstoff-ai-intern-task-fhvwbc82z.vercel.app"
 ]
 
 app.add_middleware(
