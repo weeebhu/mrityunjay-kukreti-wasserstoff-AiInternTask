@@ -30,7 +30,7 @@ app.add_middleware(
 app.include_router(rag_router)
 app.include_router(themes_router)
 
-@app.post("https://mrityunjay-kukreti-wasserstoff.onrender.com/upload/")
+@app.post("/upload/")
 async def upload_doc(files: List[UploadFile] = File(...)):  # note plural 'files'
     results = []
     for file in files:
@@ -47,6 +47,6 @@ async def upload_doc(files: List[UploadFile] = File(...)):  # note plural 'files
         
     return {"filenames": results}
 
-@app.get("https://mrityunjay-kukreti-wasserstoff.onrender.com/")
+@app.get("/")
 def root():
     return {"message": "Backend is live 🚀"}
