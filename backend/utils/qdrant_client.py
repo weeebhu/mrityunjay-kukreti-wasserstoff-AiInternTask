@@ -19,24 +19,23 @@ client = QdrantClient(
 COLLECTION_NAME = "document_chunks"
 
 def create_collection_if_not_exists(dim: int = 384):
-    """
-    Checks if collection exists; if not, creates one with specified vector dimension.
-    """
     collections = [col.name for col in client.get_collections().collections]
+    print("Existing collections:", collections)
     if COLLECTION_NAME not in collections:
+        print(f"Creating new collection: {COLLECTION_NAME}")
         client.create_collection(
             collection_name=COLLECTION_NAME,
             vectors_config=VectorParams(size=dim, distance=Distance.COSINE),
         )
+    else:
+        print(f"Collection '{COLLECTION_NAME}' already exists.")
 
 def insert_into_qdrant(chunks, embeddings, filename):
-    """
-    Uploads each chunk and its vector into Qdrant with metadata.
+    if not embeddings:
+        raise ValueError("Embeddings list is empty. Cannot insert into Qdrant.")
+    if len(chunks) != len(embeddings):
+        raise ValueError(f"Chunks and embeddings length mismatch: {len(chunks)} vs {len(embeddings)}")
     
-    :param chunks: List[str] — raw text chunks
-    :param embeddings: List[List[float]] — corresponding vectors
-    :param filename: str — original filename for metadata
-    """
     create_collection_if_not_exists(dim=len(embeddings[0]))
 
     points = []
@@ -46,15 +45,17 @@ def insert_into_qdrant(chunks, embeddings, filename):
             vector=vector.tolist(),
             payload={
                 "id": i,
-                "embedding": vector.tolist(),  # or just omit this if not needed
                 "text": chunk["text"],
-                "filename":filename,
+                "filename": filename,
                 "chunk_id": chunk["chunk_id"],
                 "source": filename
             }
         ))
 
+    print(f"Inserting {len(points)} points into Qdrant.")
     client.upsert(collection_name=COLLECTION_NAME, points=points)
+    print("Insertion successful.")
+
 
 def search_qdrant(query_vector, top_k=3):
     """
