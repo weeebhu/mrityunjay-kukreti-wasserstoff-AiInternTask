@@ -16,7 +16,7 @@ def extract_text(filepath):
         return extract_from_pdf(filepath)
     elif is_image(filepath):
         return extract_from_image(filepath)
-    else:
+    else:   
         raise ValueError("Unsupported file type")
 
 def extract_from_pdf(filepath):
