@@ -12,7 +12,8 @@ load_dotenv()
 # Qdrant client config (modify if running in Docker or cloud)
 client = QdrantClient(
     url="https://9a813689-87e4-4830-8d4c-50f3968e51ba.us-east4-0.gcp.cloud.qdrant.io",  
-    api_key= os.getenv("QDRANT_API_KEY")  
+    api_key= os.getenv("QDRANT_API_KEY") ,
+    prefer_grpc = False
 )
 
 COLLECTION_NAME = "document_chunks"
